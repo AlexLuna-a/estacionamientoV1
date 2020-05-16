@@ -32,9 +32,7 @@ Route::group(['prefix'=>'usr'],function(){
     Route::get('loggOut','usuarioController@loggout');
     Route::get('edit','usuarioController@edit');
     Route::post('in','usuarioController@reg_in');
-    
-    
-    
+    //A VER QUE MAS LE PONEMOS AQUI
 });
 
 
