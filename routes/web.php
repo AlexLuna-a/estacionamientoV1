@@ -26,7 +26,7 @@ Route::get('/', function () {
 */
 Route::get('/','usuarioController@index');
 Route::group(['prefix'=>'usr'],function(){
-    Route::get('log','usuarioController@loggin');
+    Route::get('log','usuarioController@loggin')->name('loggin');
     Route::post('logIn','usuarioController@loggin_in');
     Route::get('reg','usuarioController@reg');
     Route::get('loggOut','usuarioController@loggout');
