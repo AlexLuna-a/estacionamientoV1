@@ -21,7 +21,7 @@
                 <label for="nombre">Nombre(s)</label>
             </td>
             <td>
-                <input type="text" name="nombre" required value="{{$usuario->nombre_user ?? ''}}"/>
+                <input type="text" name="nombre" required pattern="[a-z A-Z]+" value="{{$usuario->nombre_user ?? ''}}"/>
             </td>
         </tr>
         <tr>
@@ -29,7 +29,7 @@
                 <label for="apellidoP">Apellido paterno</label>
             </td>
             <td>
-                <input type="text" name="apellidoP" required value="{{$usuario->apellido_p_user ?? ''}}"/>
+                <input type="text" name="apellidoP" pattern="[a-z A-Z]+" value="{{$usuario->apellido_p_user ?? ''}}"/>
             </td>
         </tr>
         <tr>
@@ -37,7 +37,7 @@
                 <label for="apellidoM">Apellido Materno</label>
             </td>
             <td>
-                <input type="text" name="apellidoM" required value="{{$usuario->apellido_m_user ?? ''}}" />
+                <input type="text" name="apellidoM"  pattern="[a-z A-Z]+" value="{{$usuario->apellido_m_user ?? ''}}" />
             </td>
         </tr>
         <tr>
@@ -71,7 +71,7 @@
                 <label for="password">Contraseña </label>
             </td>
             <td>
-                <input type="password" name="password" required value="{{$usuario->password_user ?? ''}}"/>
+                <input type="password" name="password" required minlength="6" value="{{$usuario->password_user ?? ''}}"/>
             </td>
         </tr>
         <p class="alerta_error">{{session('mensaje')->vacios ?? ''}}</p>
