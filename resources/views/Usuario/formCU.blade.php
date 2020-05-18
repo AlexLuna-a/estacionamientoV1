@@ -77,6 +77,8 @@
         <p class="alerta_error">{{session('mensaje')->vacios ?? ''}}</p>
         <p class="alerta_error">{{session('mensaje')->idRepetido ?? ''}}</p>
         <p class="alerta_error">{{session('mensaje')->invalidos ?? ''}}</p>
+        <input type="text" hidden name="ingreso" value="{{$usuario->fecha_ingreso_user ?? date('Y-m-d')}}"/> 
+        <input type="text" hidden name="vigencia" value="{{$usuario->vigencia_user ?? session('vigencia')}}"/> 
     </table>
     @if(!isset($usuario))
         <input type="submit" value="Resgistrarse"/>
