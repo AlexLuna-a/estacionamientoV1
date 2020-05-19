@@ -3,12 +3,15 @@
 @stop
 
 @section('contenido')
-<form action="{{action('usuarioController@reg_in')}}" method="POST" class="formitas">
-    <h1>
+
+
         @if(isset($accion))
-        {{$accion}}
+        <form action="{{action('UsuarioController@update', ['us' =>$usuario->id])}}" method="POST" class="formitas">
+            {{ method_field('PATCH') }}
+        <h1>{{$accion}}
         @else
-        Registrate
+        <form action="{{action('UsuarioController@store')}}" method="POST" class="formitas">
+        <h1>Registrate
         @endif
     
     </h1>
@@ -84,7 +87,7 @@
         <input type="submit" value="Resgistrarse"/>
         <p class="cambioLog">
         Ya tienes una cuenta?
-        <a href="{{action('usuarioController@loggin')}}" class="button">Inicia sesion</a>
+        <a href="{{action('UsuarioController@loggin')}}" class="button">Inicia sesion</a>
     </p>
     @else
         <input type="submit" value="Guardar cambios"/>
