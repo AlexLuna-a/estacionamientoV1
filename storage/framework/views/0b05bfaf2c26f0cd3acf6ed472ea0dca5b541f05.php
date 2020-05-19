@@ -12,19 +12,19 @@
             <!--LOGO -->
             <div class="Logo">
                 <div id="imagen">
-                    <a href="<?php echo e(action('usuarioController@index')); ?>"><image src="/css/Logo/Logo_qci.jpg"/></a>
+                    <a href="<?php echo e(action('UsuarioController@index')); ?>"><image src="/css/Logo/Logo_qci.jpg"/></a>
                 </div>    
             </div>
             <!--TITULO -->
             <div id="titulo">
-                <a href="<?php echo e(action('usuarioController@index')); ?>">Estacionate CUCEI</a>
+                <a href="<?php echo e(action('UsuarioController@index')); ?>">Estacionate CUCEI</a>
             </div>
             <?php if(session('usuario') ): ?>
             <!-- MENU -->
             <nav class="menu">
                 <ul>
                     <li>
-                        <a href="<?php echo e(action('usuarioController@index')); ?>">inicio</a>
+                        <a href="<?php echo e(action('UsuarioController@index')); ?>">inicio</a>
                 </li>
                 <li>
                     <a href="<?php echo e(action('estacionamientoController@index')); ?>">Estacionamientos</a>
@@ -33,7 +33,7 @@
                     <a href="<?php echo e(action('movimientoController@index')); ?>">Movimientos</a>
                 </li>
                 <li>
-                    <a href="">Vehiculos</a>
+                    <a href="<?php echo e(action('vehiculoController@index')); ?>">Vehiculos</a>
                 </li>
                 <?php if(session()->exists('nivel')): ?>
                 <?php if(session('nivel')>=9): ?>
@@ -57,8 +57,8 @@
             <div class="dropdown">
                 <button class="dropbtn"><?php echo e(session('usuario')->nombre_user); ?></button>
                 <div class="dropdown-content">
-                    <a href="<?php echo e(action('usuarioController@edit')); ?>">Administrar cuenta</a>
-                    <a href="<?php echo e(action('usuarioController@loggout')); ?>">Cerrar sesion</a>
+                    <a href="<?php echo e(action('UsuarioController@edit', ['us'=> session('usuario')->id ])); ?>">Administrar cuenta</a>
+                    <a href="<?php echo e(action('UsuarioController@loggout')); ?>">Cerrar sesion</a>
                 </div>
             </div>
         </div>

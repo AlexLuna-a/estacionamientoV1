@@ -4,15 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class vehiculo extends Model
+class Vehiculo extends Model
 {
-    protected $fillable= [
-    'id', 'placa_veh ', 'tipo_veh', 'color_veh', 'codigo_user'
-    ];
+    protected $table = 'vehiculo';
     
-    protected $table;
+    protected $primaryKey='placa_veh';
+    protected $keyType='string';
+    public $timestamps = false;
     
-    public function __construct() {
-           $this->table='vehiculo';
-    }
+    
+    
 }

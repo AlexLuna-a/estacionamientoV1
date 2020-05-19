@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Vehiculo;
+use App\Http\Controllers\UsuarioController;
 
-class vehiculoController extends Controller
+
+
+class VehiculoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +17,11 @@ class vehiculoController extends Controller
      */
     public function index()
     {
-        //
+        if (!isLog()) {
+            return redirect()->action('usuarioController@loggin');
+        }
+        $vehiculos= Vehiculo::where('codigo_user', session('usuario')->id)->get();
+        return view('Vehiculo.index', ['vehiculos'=>$vehiculos]);
     }
 
     /**

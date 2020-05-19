@@ -5,7 +5,7 @@
 
 
 <?php $__env->startSection('contenido'); ?>
-<form action="<?php echo e(action('usuarioController@loggin_in')); ?>" method="POST" class="formitas">
+<form action="<?php echo e(action('UsuarioController@loggin_in')); ?>" method="POST" class="formitas">
     <h1>Bienvenido</h1>
     <table class="formTabulado">
         <?php echo e(csrf_field()); ?>
@@ -40,7 +40,7 @@
 
     <p class="cambioLog">
         No tienes una cuenta?
-        <a href="<?php echo e(action('usuarioController@reg')); ?>">Registrarse</a>
+        <a href="<?php echo e(action('UsuarioController@create')); ?>">Registrarse</a>
     </p>
     
 
