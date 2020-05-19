@@ -12,19 +12,19 @@
             <!--LOGO -->
             <div class="Logo">
                 <div id="imagen">
-                    <a href="{{action('usuarioController@index')}}"><image src="/css/Logo/Logo_qci.jpg"/></a>
+                    <a href="{{action('UsuarioController@index')}}"><image src="/css/Logo/Logo_qci.jpg"/></a>
                 </div>    
             </div>
             <!--TITULO -->
             <div id="titulo">
-                <a href="{{action('usuarioController@index')}}">Estacionate CUCEI</a>
+                <a href="{{action('UsuarioController@index')}}">Estacionate CUCEI</a>
             </div>
             @if(session('usuario') ){{--existencia de usuario --}}
             <!-- MENU -->
             <nav class="menu">
                 <ul>
                     <li>
-                        <a href="{{action('usuarioController@index')}}">inicio</a>
+                        <a href="{{action('UsuarioController@index')}}">inicio</a>
                 </li>
                 <li>
                     <a href="{{action('estacionamientoController@index')}}">Estacionamientos</a>
@@ -33,7 +33,7 @@
                     <a href="{{action('movimientoController@index')}}">Movimientos</a>
                 </li>
                 <li>
-                    <a href="">Vehiculos</a>
+                    <a href="{{action('vehiculoController@index')}}">Vehiculos</a>
                 </li>
                 @if(session()->exists('nivel'))
                 @if(session('nivel')>=9)
@@ -57,8 +57,8 @@
             <div class="dropdown">
                 <button class="dropbtn">{{session('usuario')->nombre_user}}</button>{{-- Nomnre de usuario --}}
                 <div class="dropdown-content">
-                    <a href="{{action('usuarioController@edit')}}">Administrar cuenta</a>
-                    <a href="{{action('usuarioController@loggout')}}">Cerrar sesion</a>
+                    <a href="{{action('UsuarioController@edit', ['us'=> session('usuario')->id ])}}">Administrar cuenta</a>
+                    <a href="{{action('UsuarioController@loggout')}}">Cerrar sesion</a>
                 </div>
             </div>
         </div>
