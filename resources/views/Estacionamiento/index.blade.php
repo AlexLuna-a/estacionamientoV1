@@ -27,7 +27,7 @@
             </tbody>
     </table>
     @if(session('nivel') == 10)
-<a href="{{action('EstacionamientoController@create')}}">añadir</a>
+    <a href="{{action('EstacionamientoController@create')}}" class="botonAnadir">añadir</a>
 @endif
 
 
