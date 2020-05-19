@@ -6,7 +6,7 @@
 
 
 @section('contenido')
-<form action="{{action('usuarioController@loggin_in')}}" method="POST" class="formitas">
+<form action="{{action('UsuarioController@loggin_in')}}" method="POST" class="formitas">
     <h1>Bienvenido</h1>
     <table class="formTabulado">
         {{csrf_field()}}
@@ -39,7 +39,7 @@
 
     <p class="cambioLog">
         No tienes una cuenta?
-        <a href="{{action('usuarioController@reg')}}">Registrarse</a>
+        <a href="{{action('UsuarioController@create')}}">Registrarse</a>
     </p>
     
 
