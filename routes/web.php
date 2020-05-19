@@ -35,14 +35,9 @@ Route::group(['prefix'=>'usr'],function(){
 
 
 
-
+Route::resource('est', 'EstacionamientoController');
 Route::group(['prefix'=>'est'],function(){
-    Route::get('/', 'estacionamientoController@index');
-    Route::get('show/{id}', 'estacionamientoController@show');
-    Route::get('edit/{id}', 'estacionamientoController@edit');
-    Route::post('store', 'estacionamientoController@store');
-    Route::get('create', 'estacionamientoController@create');
-    Route::post('save', 'estacionamientoController@save');
+   
 });
 
 Route::group(['prefix'=>'mvt'],function(){

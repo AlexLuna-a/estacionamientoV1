@@ -1,12 +1,13 @@
-@extends('Usuario.masterUsuario')
+@extends('layout.master')
 
 @section('contenido')
 
 
 @if(!isset($e))
-<form action="{{action('estacionamientoController@save')}}" method="POST" class="formitas">
+<form action="{{action('EstacionamientoController@store')}}" method="POST" class="formitas">
 @else
-<form action="{{action('estacionamientoController@store')}}" method="POST" class="formitas">
+<form action="{{action('EstacionamientoController@update', ['est'=>$e->id])}}" method="POST" class="formitas">
+    {{ method_field('PATCH') }}
 @endif
 <h1>
     {{$accion ?? ''}}

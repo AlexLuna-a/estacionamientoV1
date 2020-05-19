@@ -15,7 +15,7 @@
             <?php $__currentLoopData = $estacionamientos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $est): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <tr>
                 <td>
-                    <a href="<?php echo e(action('estacionamientoController@show',['id'=> $est->id ])); ?>"><?php echo e($est->nombre_est); ?></a>
+                    <a href="<?php echo e(action('EstacionamientoController@show',['est'=> $est->id ])); ?>"><?php echo e($est->nombre_est); ?></a>
                 </td>
                 <td>
                     <?php echo e($est->capacidad_max_est - $est->ocupacion_actual_est); ?>
@@ -26,7 +26,7 @@
             </tbody>
     </table>
     <?php if(session('nivel') == 10): ?>
-<a href="<?php echo e(action('estacionamientoController@create')); ?>">añadir</a>
+<a href="<?php echo e(action('EstacionamientoController@create')); ?>">añadir</a>
 <?php endif; ?>
 
 

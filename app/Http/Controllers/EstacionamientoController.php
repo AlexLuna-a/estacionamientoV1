@@ -3,16 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\estacionamiento;
+use App\Estacionamiento;
 use App\tipoUsuario;
 
-class estacionamientoController extends Controller {
-
-    private $estacionamiento;
-
-    function __construct() {
-        $this->estacionamiento = new estacionamiento();
-    }
+class EstacionamientoController extends Controller {
 
     /**
      * Display a listing of the resource.
@@ -20,7 +14,7 @@ class estacionamientoController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $aux = new estacionamiento();
+        $aux = new Estacionamiento();
         $estacionamientos = $aux->getDisponibles(session('nivel'));
         return view('Estacionamiento.index')->with(['estacionamientos' => $estacionamientos]);
     }
@@ -31,11 +25,12 @@ class estacionamientoController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        $tipos= new tipoUsuario();
+        $tipos = new tipoUsuario();
         $t = $tipos->getDisponibles(session('nivel'));
         return view('Estacionamiento.form')->with([
-            'accion' => 'Crear registro',
-            'tipos' => $t]);
+                    'accion' => 'Crear registro',
+                    'tipos' => $t
+        ]);
     }
 
     /**
@@ -45,75 +40,29 @@ class estacionamientoController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        
-        $id=$request->input('id');
-        $nombre=$request->input('nombre');
-        $ubicacion=$request->input('ubicacion'); 
-        $auxID=$this->estacionamiento->nomDuplicados($nombre);
-        if(isset($auxID) && $auxID != $id){
-            $error=true;
-        }
-        $auxID=$this->estacionamiento->ubiDuplicados($ubicacion);
-        if(isset($auxID) && $auxID != $id){
-            $error=true;
-        }
-        if($error){
-            
+        $auxModel = new Estacionamiento();
+
+        $nombre = $request->input('nombre');
+        $ubicacion = $request->input('ubicacion');
+        $auxValid = $auxModel->duplicados($nombre, $ubicacion);
+        if ($auxValid) {
             session()->flash('mensajeError', 'El nombre o la ubicacion ya han sido registrados');
-            return redirect()->action('estacionamientoController@create');
+            return redirect()->action('EstacionamientoController@create');
         }
-        
-        $this->estacionamiento->id=$id;
-        $this->estacionamiento->nombre_est=$nombre;
-        $nivel=$request->input('nivel');
-        $this->estacionamiento->nivel_est=$nivel;
-        $this->estacionamiento->ubicacion_est=$ubicacion;
-        $maxima=$request->input('maxima');
-        $this->estacionamiento->capacidad_max_est=$maxima;
-        $actual=$request->input('actual');
-        $this->estacionamiento->ocupacion_actual_est=$actual;
-        
-        
-        
-        
-        
-        
-        $this->estacionamiento->actualizar();
-        $mensajeCompleto='Se ha actualizado el registro';
-        session()->flash('mensajeCompleto', $mensajeCompleto);
-        return redirect()->action('estacionamientoController@edit',[ 'id' => $id]);
-        //
-    }
-    
-    public function save(Request $request){
-        $nombre=$request->input('nombre');
-        $ubicacion=$request->input('ubicacion'); 
-        $auxID=$this->estacionamiento->nomDuplicados($nombre);
-        if(isset($auxID)){
-            $error=true;
-        }
-        $auxID=$this->estacionamiento->ubiDuplicados($ubicacion);
-        if(isset($auxID)){
-            $error=true;
-        }
-        if($error){
-            
-            session()->flash('mensajeError', 'El nombre o la ubicacion ya han sido registrados');
-            return redirect()->action('estacionamientoController@create');
-        }
-        $this->estacionamiento->nombre_est=$nombre;
-        $nivel=$request->input('nivel');
-        $this->estacionamiento->nivel_est=$nivel;
-        $this->estacionamiento->ubicacion_est=$ubicacion;
-        $maxima=$request->input('maxima');
-        $this->estacionamiento->capacidad_max_est=$maxima;
-        $actual=$request->input('actual');
-        $this->estacionamiento->ocupacion_actual_est=$actual;
-        $this->estacionamiento->save();
-        $mensajeCompleto='Se ha creado el registro';
-        session()->flash('mensajeCompleto', $mensajeCompleto);
-        return redirect()->action('estacionamientoController@create');
-        
+
+        $estacionamiento = new Estacionamiento();
+
+        $estacionamiento->nombre_est = $nombre;
+        $estacionamiento->ubicacion_est = $ubicacion;
+        $estacionamiento->capacidad_max_est = $request->input('maxima');
+        $estacionamiento->ocupacion_actual_est = $request->input('actual');
+        $estacionamiento->nivel_est = $request->input('nivel');
+
+        $estacionamiento->save();
+
+        $auxValid = $auxModel->duplicados($nombre, $ubicacion);
+        session()->flash('mensajeCompleto', 'Se ha actualizado el registro');
+        return redirect()->action('EstacionamientoController@show', ['est' => $auxValid->id]);
     }
 
     /**
@@ -123,14 +72,14 @@ class estacionamientoController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        $acces=null;
-        $estacionamiento = $this->estacionamiento->getReg($id);
+        $acces = null;
+        $estacionamiento = Estacionamiento::find($id);
         if (session('nivel') >= 9) {
             $auxT = new tipoUsuario();
             $acces = $auxT->getAcces($estacionamiento->nivel_est);
         }
         return view('Estacionamiento.detalle')->with(['est' => $estacionamiento,
-                'acces' => $acces]);
+                    'acces' => $acces]);
     }
 
     /**
@@ -140,11 +89,10 @@ class estacionamientoController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        $est = new estacionamiento();
-        $e =$est->getReg($id);
+        $estacionamiento = Estacionamiento::Find($id);
         $tipos= new tipoUsuario();
         $t = $tipos->getDisponibles(session('nivel'));
-        return view('Estacionamiento.form')->with(['e' => $e,
+        return view('Estacionamiento.form')->with(['e' => $estacionamiento,
             'accion' => 'actualizar registro',
             'tipos' => $t]);
     }
@@ -157,7 +105,31 @@ class estacionamientoController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
+        $nombre=$request->input('nombre');
+        $ubicacion=$request->input('ubicacion');
+        
+        $auxModel = new Estacionamiento();
+        $auxValid = $auxModel->duplicados($nombre, $ubicacion);
+        
+        if ($auxValid && $auxValid!=$id) {
+            session()->flash('mensajeError', 'El nombre o la ubicacion ya han sido registrados');
+            return redirect()->action('EstacionamientoController@edit', ['est' => $id]);
+        }
+        
+        $estacionamiento = Estacionamiento::find($id);
+        
+        $estacionamiento->nombre_est = $nombre;
+        $estacionamiento->ubicacion_est = $ubicacion;
+        $estacionamiento->capacidad_max_est = $request->input('maxima');
+        $estacionamiento->ocupacion_actual_est = $request->input('actual');
+        $estacionamiento->nivel_est = $request->input('nivel');
+
+        $estacionamiento->save();
+        session()->flash('mensajeCompleto', 'Se ha actualizado el registro');
+        return redirect()->action('EstacionamientoController@edit',[ 'est' => $id]);
         //
+        
+        
     }
 
     /**

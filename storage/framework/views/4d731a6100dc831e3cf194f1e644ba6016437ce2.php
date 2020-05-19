@@ -71,9 +71,9 @@
 
 
 <?php if(session('nivel') == 10): ?>
-<a href="<?php echo e(action('estacionamientoController@edit',['id' => $est->id])); ?>" class="editBtn">editar</a>
+<a href="<?php echo e(action('EstacionamientoController@edit',['est' => $est->id])); ?>" class="editBtn">editar</a>
 <?php endif; ?>
-<a href="<?php echo e(action('estacionamientoController@index')); ?>" class="botonRegresar">Regresar</a>
+<a href="<?php echo e(action('EstacionamientoController@index')); ?>" class="botonRegresar">Regresar</a>
 
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layout.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\wamp64\www\estacionamientoV1\resources\views/Estacionamiento/detalle.blade.php ENDPATH**/ ?>

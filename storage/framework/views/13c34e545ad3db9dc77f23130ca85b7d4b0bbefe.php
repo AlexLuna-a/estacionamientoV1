@@ -1,5 +1,5 @@
 <?php $__env->startSection('menu'); ?>
-##parent-placeholder-252a25667dc7c65fe0e9bf62d474bbab9bab4068##
+
 <?php $__env->stopSection(); ?>
 
 
@@ -45,4 +45,4 @@
     
 
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('Usuario.masterUsuario', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\wamp64\www\estacionamientoV1\resources\views/Usuario/loggin.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layout.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\wamp64\www\estacionamientoV1\resources\views/Usuario/loggin.blade.php ENDPATH**/ ?>

@@ -27,7 +27,7 @@
                         <a href="{{action('UsuarioController@index')}}">inicio</a>
                 </li>
                 <li>
-                    <a href="{{action('estacionamientoController@index')}}">Estacionamientos</a>
+                    <a href="{{action('EstacionamientoController@index')}}">Estacionamientos</a>
                 </li>
                 <li>
                     <a href="{{action('movimientoController@index')}}">Movimientos</a>

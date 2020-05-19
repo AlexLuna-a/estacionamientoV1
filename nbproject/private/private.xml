@@ -3,10 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/wamp64/www/estacionamientoV1/app/Http/Controllers/VehiculoController.php</file>
-            <file>file:/D:/wamp64/www/estacionamientoV1/app/vehiculo.php</file>
+            <file>file:/D:/wamp64/www/estacionamientoV1/app/Http/Controllers/UsuarioController.php</file>
+            <file>file:/D:/wamp64/www/estacionamientoV1/resources/views/Usuario/loggin.blade.php</file>
             <file>file:/D:/wamp64/www/estacionamientoV1/resources/views/pruebas.blade.php</file>
+            <file>file:/D:/wamp64/www/estacionamientoV1/app/Usuario.php</file>
+            <file>file:/D:/wamp64/www/estacionamientoV1/app/vehiculo.php</file>
+            <file>file:/D:/wamp64/www/estacionamientoV1/resources/views/layout/master.blade.php</file>
             <file>file:/D:/wamp64/www/estacionamientoV1/routes/web.php</file>
+            <file>file:/D:/wamp64/www/estacionamientoV1/resources/views/Usuario/formCU.blade.php</file>
+            <file>file:/D:/wamp64/www/estacionamientoV1/resources/views/Usuario/index.blade.php</file>
         </group>
     </open-files>
 </project-private>

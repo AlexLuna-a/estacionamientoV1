@@ -120,11 +120,12 @@ class UsuarioController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show($us) {
-        if (!isLog()) {
+        if (!isLog() && session('nivel')!=10) {
             return redirect()->action('UsuarioController@loggin');
         }
         $usuario = Usuario::find($us);
-        return view('pruebas')->with('usuario', $usuario);
+        $tipo=$usuario->tipo->nombre_tipo;
+        return view('Usuario.detalle')->with('usuario', $usuario)->with('tipo', $tipo);
     }
 
     /**

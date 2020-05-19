@@ -2,9 +2,11 @@
 
 
 <?php if(!isset($e)): ?>
-<form action="<?php echo e(action('estacionamientoController@save')); ?>" method="POST" class="formitas">
+<form action="<?php echo e(action('EstacionamientoController@store')); ?>" method="POST" class="formitas">
 <?php else: ?>
-<form action="<?php echo e(action('estacionamientoController@store')); ?>" method="POST" class="formitas">
+<form action="<?php echo e(action('EstacionamientoController@update', ['est'=>$e->id])); ?>" method="POST" class="formitas">
+    <?php echo e(method_field('PATCH')); ?>
+
 <?php endif; ?>
 <h1>
     <?php echo e($accion ?? ''); ?>
@@ -78,4 +80,4 @@
 <?php endif; ?>
 </form>
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('Usuario.masterUsuario', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\wamp64\www\estacionamientoV1\resources\views/Estacionamiento/form.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layout.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\wamp64\www\estacionamientoV1\resources\views/Estacionamiento/form.blade.php ENDPATH**/ ?>

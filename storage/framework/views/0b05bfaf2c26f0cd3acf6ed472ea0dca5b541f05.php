@@ -27,7 +27,7 @@
                         <a href="<?php echo e(action('UsuarioController@index')); ?>">inicio</a>
                 </li>
                 <li>
-                    <a href="<?php echo e(action('estacionamientoController@index')); ?>">Estacionamientos</a>
+                    <a href="<?php echo e(action('EstacionamientoController@index')); ?>">Estacionamientos</a>
                 </li>
                 <li>
                     <a href="<?php echo e(action('movimientoController@index')); ?>">Movimientos</a>

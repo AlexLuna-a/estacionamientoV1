@@ -68,8 +68,8 @@
 
 
 @if(session('nivel') == 10)
-<a href="{{action('estacionamientoController@edit',['id' => $est->id])}}" class="editBtn">editar</a>
+<a href="{{action('EstacionamientoController@edit',['est' => $est->id])}}" class="editBtn">editar</a>
 @endif
-<a href="{{action('estacionamientoController@index')}}" class="botonRegresar">Regresar</a>
+<a href="{{action('EstacionamientoController@index')}}" class="botonRegresar">Regresar</a>
 
 @stop

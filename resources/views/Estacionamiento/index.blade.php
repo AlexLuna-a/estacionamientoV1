@@ -17,7 +17,7 @@
             @foreach($estacionamientos as $est)
             <tr>
                 <td>
-                    <a href="{{action('estacionamientoController@show',['id'=> $est->id ])}}">{{$est->nombre_est}}</a>
+                    <a href="{{action('EstacionamientoController@show',['est'=> $est->id ])}}">{{$est->nombre_est}}</a>
                 </td>
                 <td>
                     {{$est->capacidad_max_est - $est->ocupacion_actual_est}}
@@ -27,7 +27,7 @@
             </tbody>
     </table>
     @if(session('nivel') == 10)
-<a href="{{action('estacionamientoController@create')}}">añadir</a>
+<a href="{{action('EstacionamientoController@create')}}">añadir</a>
 @endif
 
 

@@ -12,6 +12,7 @@ class Usuario extends Model
     
     
     
+    
     public function tipo(){
         return $this->belongsTo('App\TipoUsuario', 'clave_tipo');
     }

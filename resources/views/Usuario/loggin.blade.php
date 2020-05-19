@@ -1,6 +1,6 @@
-@extends('Usuario.masterUsuario')
+@extends('layout.master')
 @section('menu')
-@parent
+
 @stop
 
 
