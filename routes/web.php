@@ -22,17 +22,15 @@ Route::get('/', function () {
     return view('pruebas');
 })->name('pruebas');
 
-//Route::resource('usr', 'UsuarioController');
+
 */
 Route::get('/','usuarioController@index');
+Route::resource('us', 'UsuarioController');
+
 Route::group(['prefix'=>'usr'],function(){
-    Route::get('log','usuarioController@loggin')->name('loggin');
-    Route::post('logIn','usuarioController@loggin_in');
-    Route::get('reg','usuarioController@reg');
-    Route::get('loggOut','usuarioController@loggout');
-    Route::get('edit','usuarioController@edit');
-    Route::post('in','usuarioController@reg_in');
-    //A VER QUE MAS LE PONEMOS AQUI
+    Route::get('log','UsuarioController@loggin')->name('loggin');
+    Route::post('logIn','UsuarioController@loggin_in');
+    Route::get('loggOut','UsuarioController@loggout');
 });
 
 
@@ -57,12 +55,7 @@ Route::group(['prefix'=>'mvt'],function(){
 });
 
 
-
-
-
-
-
-//Route::resource('typ', 'tipoUsuarioController');
+Route::resource('veh', 'vehiculoController');
 
 Route::group(['prefix'=>'typ'],function(){
     Route::get('exa','tipoUsuarioController@tuMama');
